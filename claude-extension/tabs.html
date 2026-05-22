@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AI Omni Dashboard Core</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f6f9; padding: 20px; color: #333; margin: 0; }
+    .main-layout { max-width: 1600px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .input-box { background: white; padding: 25px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    textarea { width: 100%; height: 110px; padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; resize: none; box-sizing: border-box; font-size: 14px; outline: none; }
+    textarea:focus { border-color: #007fff; }
+    button { width: 100%; background: #007fff; color: white; border: none; padding: 14px; border-radius: 10px; font-size: 16px; cursor: pointer; margin-top: 12px; font-weight: bold; transition: all 0.2s; }
+    button:hover { background: #0066cc; }
+    
+    /* 动态分栏弹性容器 */
+    .display-layout { display: flex; gap: 20px; flex-wrap: wrap; }
+    
+    /* 动态生成的 AI 卡片样式 */
+    .ai-card { flex: 1; min-width: 400px; background: white; padding: 20px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); display: flex; flex-direction: column; border-top: 5px solid #64748b; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 15px; }
+    .card-title { font-size: 18px; font-weight: bold; text-transform: uppercase; color: #1e293b; }
+    
+    /* 状态指示红绿灯 */
+    .status-badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+    .status-ready { background: #dcfce7; color: #15803d; }
+    .status-busy { background: #fef9c3; color: #a16207; }
+    .status-error { background: #fee2e2; color: #b91c1c; }
+    
+    .output { white-space: pre-wrap; word-wrap: break-word; background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; min-height: 350px; font-size: 14px; line-height: 1.6; max-height: 550px; overflow-y: auto; }
+    .tip { font-size: 12px; color: #64748b; margin-top: 10px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="main-layout">
+    <div class="input-box">
+      <textarea id="promptInput" placeholder="输入您的问题，点击一键群发驱动所有已连接的 AI 沙盒驱动..."></textarea>
+      <button id="sendBtn">🚀 一键多核心集群群发</button>
+      <div class="tip">提示：只要对应的 AI 网页处于打开状态，其驱动就会自动在此激活挂载。关闭网页则自动卸载。</div>
+    </div>
+    
+    <div class="display-layout" id="panelContainer"></div>
+  </div>
+  <script src="tabs.js"></script>
+</body>
+</html>

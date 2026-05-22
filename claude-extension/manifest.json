@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "AI Omni Dashboard Core",
+  "version": "3.1",
+  "description": "模块化多核心 AI 自动化控制台 (5核旗舰版)",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://claude.ai/*"],
+      "js": ["engines/claude.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://chat.deepseek.com/*"],
+      "js": ["engines/deepseek.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://chatgpt.com/*"],
+      "js": ["engines/chatgpt.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://gemini.google.com/*"],
+      "js": ["engines/gemini.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://grok.com/*"],
+      "js": ["engines/grok.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_title": "打开 Omni 控制台"
+  },
+  "permissions": ["storage", "tabs"]
+}
